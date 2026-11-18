@@ -15,7 +15,7 @@
 \usepackage[english]{babel}
 \usepackage{tabularx}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern}
+\usepackage{stix2}\renewcommand\labelitemi{$\bullet$}
 \input{glyphtounicode}
 \pdfgentounicode=1
 
@@ -28,7 +28,7 @@
 \addtolength{\oddsidemargin}{-0.55in}
 \addtolength{\evensidemargin}{-0.55in}
 \addtolength{\textwidth}{1.1in}
-\addtolength{\topmargin}{-0.65in}
+\addtolength{\topmargin}{-0.6in}
 \addtolength{\textheight}{1.3in}
 
 \urlstyle{same}
@@ -58,6 +58,9 @@
 \newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
 \newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.18in, itemsep=0.5pt, parsep=0pt]}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\resumeTopic}[1]{\item\small{#1}\vspace{-1pt}}
+\newcommand{\resumeSubItemListStart}{\begin{itemize}[leftmargin=0.2in, label={\scriptsize$\circ$}, itemsep=0pt, topsep=1pt]}
+\newcommand{\resumeSubItemListEnd}{\end{itemize}\vspace{1pt}}
 
 %-------------------------------------------------------------------------------
 \begin{document}
@@ -98,14 +101,26 @@
       {Graduate Research Assistant, Voth Group}{Sep 2023 -- Present}
       {The University of Chicago, Department of Chemistry}{Chicago, IL}
       \resumeItemListStart
-        \resumeItem{\textbf{Unified latent-variable framework for CG energy-based models:} showed that bottom-up coarse-graining (CG) is maximum-likelihood training of an energy-based model, and that Ultra-Coarse-Graining (observable discrete latents) and virtual-particle CG (unobservable particle latents) are two instances of one latent-variable construction.}
-        \resumeItem{\textbf{Self-Consistent Ultra-Coarse-Graining (SC-UCG), first author, \textit{J.\ Chem.\ Phys.}\ 2026:} discrete internal states of each CG molecule are inferred self-consistently by \textbf{graph message passing} at simulation time, with a \textbf{Bethe approximation plus AI-based inference} for state--state correlations, removing the hand-designed collective variables of prior UCG.}
-        \resumeItem{Developed \textbf{Multilayer Internal State Consistency (MISC)}, an ML training method derived from relative-entropy (KL) minimization that trains the force field \textbf{without iterative sampling} of intermediate models (under 2 min/epoch on one GPU).}
-        \resumeItem{\textbf{Temperature transferability:} trained at a single temperature ($T=4.3$), SC-UCG places a 3D-Ising-class chiral symmetry-breaking transition (racemic $\rightarrow$ D-/L-rich) near $T_c\approx4.4$ and recovers the collective state-switching events below $T_c$.}
-        \resumeItem{Implemented SC-UCG and lambda-dynamics UCG as an \textbf{MPI-enabled C++ LAMMPS package} (LAMMPS-UCG-dev) with PyTorch / PyTorch Geometric training workflows (TorchREM, OpenMSCG-dev); mentored 2 summer students on testing and applications (2025).}
-        \resumeItem{\textbf{Microtubule plus-end tips, first author, \textit{Biophys.\ J.}\ 2026:} analyzed terabyte-scale all-atom trajectories of $\sim$30-million-atom microtubule lattices, built a bottom-up CG tubulin model (20 sites/monomer), and ran tens-of-$\mu$s CG MD of 8- and 40-layer lattices, showing that intrinsic \textbf{lattice instability} drives protofilament clustering and explaining GTP vs.\ GDP differences.}
-        \resumeItem{Co-author on data-driven \textbf{equation-free} acceleration of 21--38-million-atom all-atom MD (\textit{Biophys.\ J.}\ 2025; produced the longitudinal vs.\ lateral interaction analysis, Fig.\ 4) and on all-atom/Brownian-dynamics tip-curvature analysis (\textit{Biophys.\ J.}\ 2026).}
-        \resumeItem{\textbf{Enhanced-sampling CG (with C.\ Yang):} free-energy matching of protein binding landscapes (ACS Fall 2026, BPS 2026).}
+        \resumeTopic{\textbf{Unified latent-variable framework for coarse-grained energy-based models} $|$ \textit{AI+Science 2026 poster}}
+        \resumeSubItemListStart
+          \resumeItem{Showed that bottom-up coarse-graining (CG) is maximum-likelihood training of an energy-based model, and that Ultra-Coarse-Graining (observable discrete latents) and virtual-particle CG (unobservable particle latents) are two instances of one latent-variable construction.}
+        \resumeSubItemListEnd
+        \resumeTopic{\textbf{Self-Consistent Ultra-Coarse-Graining (SC-UCG)} $|$ \textit{first author, J.\ Chem.\ Phys.\ 2026}}
+        \resumeSubItemListStart
+          \resumeItem{Discrete internal states of each CG molecule are inferred self-consistently by \textbf{graph message passing} at simulation time, with a \textbf{Bethe approximation plus AI-based inference} for state--state correlations, removing the hand-designed collective variables of prior UCG.}
+          \resumeItem{Developed \textbf{Multilayer Internal State Consistency (MISC)}, an ML training method derived from relative-entropy (KL) minimization that trains the force field \textbf{without iterative sampling} of intermediate models (under 2 min/epoch on one GPU).}
+          \resumeItem{\textbf{Temperature transferability:} trained at a single temperature ($T=4.3$), SC-UCG places a 3D-Ising-class chiral symmetry-breaking transition (racemic $\rightarrow$ D-/L-rich) near $T_c\approx4.4$ and recovers the collective state-switching events below $T_c$.}
+          \resumeItem{Implemented SC-UCG and lambda-dynamics UCG as an \textbf{MPI-enabled C++ LAMMPS package} (LAMMPS-UCG-dev) with PyTorch / PyTorch Geometric training workflows (TorchREM, OpenMSCG-dev); mentored 2 summer students on testing and applications (2025).}
+        \resumeSubItemListEnd
+        \resumeTopic{\textbf{Multiscale modeling of microtubule plus-end tips} $|$ \textit{first author, Biophys.\ J.\ 2026; co-author, Biophys.\ J.\ 2025, 2026}}
+        \resumeSubItemListStart
+          \resumeItem{Analyzed terabyte-scale all-atom trajectories of $\sim$30-million-atom microtubule lattices, built a bottom-up CG tubulin model (20 sites/monomer), and ran tens-of-$\mu$s CG MD of 8- and 40-layer lattices, showing that intrinsic \textbf{lattice instability} drives protofilament clustering and explaining GTP vs.\ GDP differences.}
+          \resumeItem{Co-author on data-driven \textbf{equation-free} acceleration of 21--38-million-atom all-atom MD (produced the longitudinal vs.\ lateral interaction analysis, Fig.\ 4) and on all-atom/Brownian-dynamics tip-curvature analysis.}
+        \resumeSubItemListEnd
+        \resumeTopic{\textbf{Enhanced-sampling-driven coarse-graining} $|$ \textit{with C.\ Yang; ACS Fall 2026, BPS 2026}}
+        \resumeSubItemListStart
+          \resumeItem{Free-energy matching of protein binding landscapes from enhanced-sampling data.}
+        \resumeSubItemListEnd
       \resumeItemListEnd
 
     \resumeSubheading
