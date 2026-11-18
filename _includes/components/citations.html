@@ -1,0 +1,21 @@
+{% comment %}
+  Renders the citation line and a row of links for a publication.
+  Pass the publication document as `item`. Supported front-matter fields:
+  citation, paperurl, arxivurl, openreviewurl, codeurl, slidesurl, bibtexurl, note.
+{% endcomment %}
+{% assign it = include.item %}
+{% if it.citation %}
+<p class="pub-citation">{{ it.citation }}</p>
+{% endif %}
+{% if it.note %}<p class="pub-note"><em>{{ it.note }}</em></p>{% endif %}
+{% assign block = "" %}
+{% if it.paperurl %}{% capture block %}{{ block }}<a href="{{ it.paperurl }}">Paper</a> | {% endcapture %}{% endif %}
+{% if it.openreviewurl %}{% capture block %}{{ block }}<a href="{{ it.openreviewurl }}">OpenReview</a> | {% endcapture %}{% endif %}
+{% if it.arxivurl %}{% capture block %}{{ block }}<a href="{{ it.arxivurl }}">arXiv</a> | {% endcapture %}{% endif %}
+{% if it.codeurl %}{% capture block %}{{ block }}<a href="{{ it.codeurl }}">Code</a> | {% endcapture %}{% endif %}
+{% if it.slidesurl %}{% capture block %}{{ block }}<a href="{{ it.slidesurl }}">Slides</a> | {% endcapture %}{% endif %}
+{% if it.bibtexurl %}{% capture block %}{{ block }}<a href="{{ it.bibtexurl }}">BibTeX</a> | {% endcapture %}{% endif %}
+{% if block.size > 0 %}
+{% assign length = block.size | minus: 3 %}
+<p class="pub-links">{{ block | slice: 0, length }}</p>
+{% endif %}
